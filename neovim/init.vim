@@ -17,6 +17,7 @@ Plug 'honza/vim-snippets'
 Plug 'brooth/far.vim'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'pacha/vem-tabline'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " enable ncm2 for all buffers
@@ -28,9 +29,9 @@ call plug#end()
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+"nnoremap <C-f> :NERDTreeFind<CR>
 
-let NERDTreeMapOpenInTab='<ENTER>'
+let NERDTreeMapOpenInTab='l'
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
@@ -51,6 +52,7 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 "vem-tabline
 g:vem_tabline_multiwindow_mode = 1
+
 nmap <leader>h <Plug>vem_move_buffer_left-
 nmap <leader>l <Plug>vem_move_buffer_right-
 nmap <leader>p <Plug>vem_prev_buffer-
