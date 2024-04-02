@@ -1,0 +1,68 @@
+"My Vim RC
+
+packloadall						" load all plugins
+silent! helptags ALL			" load all help files in plugins
+
+set number
+set tabstop=3
+set softtabstop=3 noexpandtab
+set shiftwidth=3
+set wildmenu							" enable enhanced tab autocomplete
+set wildmode=list:longest,full	" Complete till longest string
+set hlsearch							" highlight search word use :noh to turn off
+set incsearch							" move to first word found in search
+
+
+"plugin config
+let g:plug_timeout = 180  "increase plugin timeout
+
+"Install vim plug if it's not already there and install all plugins
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC 
+endif
+
+" plugin set
+call plug#begin()
+	Plug 'preservim/nerdtree'
+	Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'ycm-core/YouCompleteMe', { 'do': './install.py'}
+	Plug 'sjl/gundo.vim' 
+	Plug 'tpope/vim-fugitive'
+call plug#end()
+
+"key mappings
+" buffer bindings
+" close buffer without closing window
+command! Bd :bp | :sp | :bn | :bd 
+
+"ctrl p 
+" ctrl + p gives you a fill fuzzy find
+
+"Nerd Tree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+"You complete me
+" goto function definition
+noremap <leader>] :YcmCompleter GoTo<cr>
+" regen ctags
+autocmd BufWritePost *.py silent! !ctags -R &
+autocmd BufWritePost *.cpp *.h *.hpp *.c silent! !ctags -R &
+
+"undo plugin
+noremap <f5> :GundoToggle<cr> "map gundo to <f5>
+
+"vim fugititve
+

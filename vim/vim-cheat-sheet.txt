@@ -1,0 +1,125 @@
+Definitions:
+* Tabs are a group of windows
+* Buffers are associated with windows
+* You can have many windows in a tab and you have have many buffers in a window
+
+#create a new tab with an empty buffer
+:tabnew
+
+#move tabs
+:tabnext
+:tabprev
+:tabclose
+
+#BUFFERS
+list all buffers
+:ls
+#BUFFERS
+list all buffers
+:ls
+
+#turn off highlights
+:noh
+
+#vimgrep
+:vimgrep <pattern> <path>.<pattern>
+# example :vimgrep animal **/* .py # search for animal in all py files
+
+#Plugins
+:PlugInstall
+:PlugUpdate
+:PlugClean - removes plugins that were removed from .vim rc file
+
+" debug slow plugins
+vim --startuptime startuptime.log
+
+profile actions
+:profile start profile.log
+:profile func *
+:profile file *
+
+#help
+:help
+:help index provides an index of all help
+:help vreplace-mode - help on visual replace mode
+:help <plugin-name>
+
+#remap
+:map  is used for recursive mapping -	these are aware of other custom mappings from plugins
+:noremap is used for non-recursive mapping - these are not aware of other custom maps so only works on system defaults
+:nmap and :norenmap maps keys for normal mode
+:vmap and :vnoremap maps for visual mode and select modes
+:xmap and :xnoremap maps for visual mode only
+:smap and :snoremap maps for select mode only
+:omap and :onoremap maps for operator pending mode
+:imap and :inoremap maps for insert mode
+:cmap and :cnoremap maps for command mode
+
+#leader key
+default leader key is '\'
+let mapleader = '\' 
+to make it space
+let mapleader = '\<space>' like spacevim
+
+
+#examples
+:map <up> <nop> " maps up arrow to do nothing
+
+
+#terminal!
+:term - creates a terminal in the current window
+
+
+#registers - used for copy and paste
+:reg lists copy and paste buffers - registers
+
+
+togo buffers
+:b1 goes to first buffer from :ls
+:bn goes to next
+:bp goes to previous
+:bd closes buffer
+
+#make all windows the same size
+ctrl W =
+
+Resize horizontal of a window:
+:resize +/- N 
+
+Reszie vertical of a window:
+:vertical resize +/- N
+
+Plugins:
+YouCompleteMe
+gd looks for local variable
+gD looks for global variable
+
+ctags
+ctrl + t go back the tag stack
+:tn - next tag
+:tp - prev tag
+
+gundo plugin
+:GundoToggle will bring up 2 windows showing a diff between the last 
+
+fugitive - git plug
+:Gstatus - git status
+:Gcommit - git commit
+:GDiff - git diff
+.D - git diff
+.cc - git commit
+:Gblame - git blame
+:copen - opens a file for fix from the GDiff output
+:cnext - opens next on after highlight
+:cprevious - open prev on after highligh line
+:Gdelete - git rm
+:Ggrep - git grep 
+:Gmove - git mv ...
+:help fugative
+
+set git tools to vimdiff
+git config --global merge.tool vimdiff
+git config --global merge.conflictstyle diff3
+git config --global mergetool.prompt false
+
+
