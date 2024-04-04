@@ -43,7 +43,7 @@ command! Bd :bp | :sp | :bn | :bd
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-s> :NERDTreeFind<CR>
 " Start NERDTree and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p
 " Start NERDTree. If a file is specified, move the cursor to its window.
@@ -58,8 +58,8 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " goto function definition
 noremap <leader>] :YcmCompleter GoTo<cr>
 " regen ctags
-autocmd BufWritePost *.py silent! !ctags -R &
-autocmd BufWritePost *.cpp *.h *.hpp *.c silent! !ctags -R &
+"autocmd BufWritePost *.py silent! !ctags -R &
+"autocmd BufWritePost *.cpp *.h *.hpp *.c silent! !ctags -R &
 
 "undo plugin
 noremap <f5> :GundoToggle<cr> "map gundo to <f5>
