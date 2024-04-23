@@ -25,6 +25,7 @@ endif
 " plugin set
 call plug#begin()
 	Plug 'preservim/nerdtree'
+	Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'ycm-core/YouCompleteMe', { 'do': './install.py'}
 	Plug 'sjl/gundo.vim' 
@@ -40,12 +41,18 @@ command! Bd :bp | :sp | :bn | :bd
 " ctrl + p gives you a fill fuzzy find
 
 "Nerd Tree
+"files opened in nerd tree open in its own tab rather in the same window
+"replacing the buffer
+let NERDTreeCustomOpenArgs={'file':{'where': 't'}}
+"shows the number of lines in a file
+let g:NERDTreeFileLines = 1
+
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-s> :NERDTreeFind<CR>
 " Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
+autocmd VimEnter * NERDTree | wincmd p 
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
@@ -53,6 +60,24 @@ autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | e
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+"Nerd tree git
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heavy feature too. default: normal
+let g:NERDTreeGitStatusShowClean = 1 " default: 0
+
+
 
 "You complete me
 " goto function definition
