@@ -29,7 +29,11 @@ call plug#begin()
 	Plug 'ycm-core/YouCompleteMe', { 'do': './install.py'}
 	Plug 'sjl/gundo.vim' 
 	Plug 'tpope/vim-fugitive'
+	Plug 'rust-lang/rust.vim'
 call plug#end()
+
+syntax enable
+filetype plugin indent on
 
 "key mappings
 " buffer bindings
