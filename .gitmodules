@@ -1,3 +1,12 @@
 [submodule "getnf"]
 	path = getnf
 	url = https://github.com/getnf/getnf.git
+[submodule "gdbinit/gdb-dashboard"]
+	path = gdbinit/gdb-dashboard
+	url = https://github.com/cyrus-and/gdb-dashboard
+[submodule "gdbinit/pwndbg"]
+	path = gdbinit/pwndbg
+	url = https://github.com/pwndbg/pwndbg
+[submodule "gdbinit/gef"]
+	path = gdbinit/gef
+	url = https://github.com/hugsy/gef.git

@@ -1,0 +1,5 @@
+set disassembly-flavor intel
+set history save on
+set paginatino off
+set print pretty on
+

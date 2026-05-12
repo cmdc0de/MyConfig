@@ -48,6 +48,11 @@ function setupVim() {
 	ln -s $PWD/vim/vimrc ~/.vimrc
 }
 
+function setupGDBInit() {
+	echo "gdb init"
+	git submodule update --init
+}
+
 printf 'Install and configure Kitty? [Y/n]'
 read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then
@@ -60,6 +65,7 @@ echo "Configure vim? [Y/n]"
 read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then
 	setupVim
+	setupGDBInit()
 else
     echo "Skipping configure vim"
 fi
