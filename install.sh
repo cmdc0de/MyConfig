@@ -63,9 +63,10 @@ fi
 
 echo "Configure vim? [Y/n]"
 read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then
+if [ "$answer" != "${answer#[Yy]}" ]
+then
 	setupVim
-	setupGDBInit()
+	setupGDBInit
 else
     echo "Skipping configure vim"
 fi

@@ -1,11 +1,11 @@
 #!/bin/bash
-UNAME=`uname'
+UNAME=`uname`
 INSTALL_DIR="$PWD"
-VERBOSE = 0
+VERBOSE=0
 
 
-processCmdLine() {
-	while getops "vi:h" opt; do
+function processCmdLine() {
+	while getopts "vi:h" opt; do
 		case $opt in
 			v)
 				VERBOSE=1;
@@ -25,7 +25,7 @@ processCmdLine() {
 	done
 }
 
-install pythonTools() {
+function pythonTools() {
 	#create venv for python tools
 	python3 -m venv ptools
 	source ptools/bin/activate
@@ -42,7 +42,7 @@ install pythonTools() {
 	python3 -m pip install pdfminer.six
 }
 
-processCmdLine()
+processCmdLine
 # TODO validate install dir
 cd $INSTALL_DIR
 
@@ -50,7 +50,7 @@ if [ $UNAME = "Linux" ]
 then
 	sudo apt update
 	sudo apt install python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential
-	pythonTools()
+	pythonTools
 	
 elif [ $UNAME="Darwin" ]
 then
@@ -59,7 +59,7 @@ then
 		#wget https://raw.githubusercontent.com/Gallopsled/pwntools-binutils/master/macos/binutils-$ARCH.rb
 		#wget https://raw.githubusercontent.com/Gallopsled/pwntools-binutils/master/macos/binutils-aarch64.rb
 		brew install ./binutils-$ARCH.rb
-		pythonTools()
+		pythonTools
 	else 
 		echo "no brew formula downloaded, see note in this script in darwin section"
 	fi
